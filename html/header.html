@@ -1,8 +1,12 @@
 <div>
     <table border="1px">
         <tr>
-            <td id="logo">Logotipo</td>
-            <td></td>
+            <td id="logo"><img id="logoIcon" src="../source/sneakers.svg"></td>
+            <td>
+                Empresa: <span id="nomeEmpresa">Nome da Empresa</span><br>
+                CNPJ: <span id="cnpjEmpresa">00.000.000/0000-00</span><br>
+                Filial: <span id="filialEmpresa">Matriz</span><br>
+            </td>
         </tr>
         <tr>
             <td id="menu">
@@ -12,25 +16,16 @@
                         Menu
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                        <button class="dropdown-item" type="button">Almoxarifado</button>
-                        <button class="dropdown-item" type="button">Compras</button>
-                        <button class="dropdown-item" type="button">Financeiro</button>
-                        <button class="dropdown-item" type="button">Cadastro Pessoa</button>
-                        
-                        <div class="dropright">
-                            <button type="button" class="btn btn-link text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Produtos
-                            </button>
-                            <div class="dropdown-menu">
-                              <!-- Links do menu dropright -->
-                            </div>
-                          </div>
-                        
+                        <button class="dropdown-item" type="button" onclick="almoxarifado();">Almoxarifado</button>
+                        <button class="dropdown-item" type="button" onclick="compras();">Compras</button>
+                        <button class="dropdown-item" type="button" onclick="financeiro();">Financeiro</button>
+                        <button class="dropdown-item" type="button" onclick="produtos();">Produtos</button>
+                        <button class="dropdown-item" type="button" onclick="cadastro();">Cadastro Pessoa</button>
                         <button class="dropdown-item" type="button" onclick="sair();">Sair</button>
                     </div>
-                </div
+                </div>
             </td>
-            <td id="aba">aba desejada</td>
+            <td id="aba">Principal</td>
         </tr>
     </table>
 </div>

@@ -1,9 +1,14 @@
 const mysql = require('mysql');
 const express = require('express');
 var app = express();
+var cors = require('cors');
 const bodyparser = require('body-parser');
 
 app.use(bodyparser.json());
+
+app.use(cors({
+  origin: "*"
+}));
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -24,10 +29,11 @@ con.connect(function(err) {
 app.listen(3000, () => console.log('Express server is runnig at port no : 3000'));
 
 //Exemplo get all -> Chamada para obter é localhost:3000/employees
-app.get('/employees', (req, res) => {
-  mysqlConnection.query('SELECT * FROM Employee', (err, rows, fields) => {
+app.get('/usuarios', (req, res) => {
+  con.query('SELECT * FROM usuarios', (err, rows, fields) => {
     if (!err)
-      res.send(rows);
+      //res.send(rows);
+      console.log(rows);
     else
       console.log(err);
   })
