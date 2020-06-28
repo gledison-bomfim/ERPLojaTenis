@@ -2,24 +2,30 @@
 
 # PROJETO VENDAS 
 
-DOCUMENTO 0001
-MARCELO  TADEU CARVALHO NASCIMENTO
-RUI VELASQUE TEIXEIRA JÚNIOR 
-ÚLTIMA ATUALIZAÇÃO: 25/05/2020
+DOCUMENTO 0001  
+MARCELO  TADEU CARVALHO NASCIMENTO  
+RUI VELASQUE TEIXEIRA JÚNIOR  
+ÚLTIMA ATUALIZAÇÃO: 25/05/2020  
 
 ## INTRODUÇÃO 
 O objetivo deste projeto e desenvolver um software de controle de estoque e vendas em uma loja de tênis onde o almoxarifado informara os produtos em falta ao setor de compras que entrara em contato com financeiro decidindo assim oque será comprado ou não.
- O sistema apresenta falhas em seu banco de dados em questão de controle de estoque sendo assim o foco será minimizar estes problemas e atender o cliente da melhor formula possível. 
+
+O sistema apresenta falhas em seu banco de dados em questão de controle de estoque sendo assim o foco será minimizar estes problemas e atender o cliente da melhor formula possível. 
+
 ## OBJETIVO
 Temos em mente como objetivo principal a modernização do controle de estoque onde apresentaremos um sistema simples mas eficaz com isso o usuário encontrara praticidade na hora que estiver trabalhando com ele.
+
 ## CARACTERÍSTICAS GERAIS
 O sistema ira operar com um servidor que gerencia o banco de dados e controla o cadastro de cada item devidamente cadastrado no sistema.
+
     - O sistema será executado em uma plataforma web.
     - Não alterar as restrições impostas no projeto.
     - Melhoria do processo se achar necessário mas não alterando a ideia principal .
     - Restrições
+
 O sistema não permitirá o cadastro de produtos que não contam no sistema ou compra de produtos não autorizada pelo financeiro.
-CARACTERÍSTICAS TÉCNICAS
+
+## CARACTERÍSTICAS TÉCNICAS
     - MySQL plataforma Windows(2).
     - Servidor Web em plataforma Windows.
     - Os coletores deverão ser baseados em plataforma Windows.
@@ -32,7 +38,7 @@ CARACTERÍSTICAS TÉCNICAS
     - Divisão em 4 partes Cabeçalho(14%),Rodapé(0%),Areá Principal(86%)
 #### Característica Cabeçalho:
     - Subdividido em 4 partes 
-    -   Menu
+    - Menu
     - Logotipo
     - Pagina Selecionada
     - Dados empresárias
@@ -112,15 +118,3 @@ Objetivo: O financeiro tem como objetivo liderar os outros setores e autorizar o
     - Autorizar Pedidos
     - Controlar os outros setores
     - Realizar o pagamento dos pedidos
-
-
-
-
-
-
-
-
-
-
-
-
