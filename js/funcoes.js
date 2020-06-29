@@ -1,9 +1,13 @@
-$( "#principal" ).removeClass( "text-center" );
+$("#principal").removeClass("text-center");
 
 $(function headerInclude() {
   if (localStorage.getItem("usuario") && localStorage.getItem("senha")) {
     $("#header").load("html/header.html");
-    $("#principal").load("html/principal.html");
+    if (sessionStorage.getItem("setor")) {
+      $("#principal").load("html/"+sessionStorage.getItem("setor")+".html");
+    } else {
+      $("#principal").load("html/principal.html");
+    }
   }
 });
 
