@@ -37,9 +37,25 @@ app.post('/usuarios', (req, res) => {
       } else {
         res.send("Não Conectou");
       }
-      console.log(rows);  
     }
-    else{
+    else {
+      res.send("Erro");
+    }
+  })
+});
+
+// Pesquisar Produtos
+app.post('/produtos', (req, res) => {
+  con.query('SELECT * FROM produtos', (err, rows, fields) => {
+    if (!err) {
+      var ProdutosJSON = [];
+      rows.forEach(function (row) {
+        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "fotoURL": row.fotoURL, "dataEmissao": row.dataEmissao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha });
+      });
+
+      res.send(JSON.stringify(ProdutosJSON));
+    }
+    else {
       res.send("Erro");
       console.log("Erro");
     }

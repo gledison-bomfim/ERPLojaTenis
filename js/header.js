@@ -21,6 +21,7 @@ function almoxarifado(){
     $("#principal").load("html/almoxarifado.html");
     document.getElementById("aba").innerHTML = "Produtos";
     sessionStorage.setItem("setor", "almoxarifado");
+    selectTodosProdutos();
 }
 
 function sair(){
