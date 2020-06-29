@@ -1,9 +1,9 @@
 $( "#principal" ).removeClass( "text-center" );
 
-
 $(function headerInclude() {
   if (localStorage.getItem("usuario") && localStorage.getItem("senha")) {
     $("#header").load("html/header.html");
+    $("#principal").load("html/principal.html");
   }
 });
 
