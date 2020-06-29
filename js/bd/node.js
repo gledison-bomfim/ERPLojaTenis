@@ -28,13 +28,12 @@ con.connect(function(err) {
 
 app.listen(3000, () => console.log('Express server is runnig at port no : 3000'));
 
-//Exemplo get all -> Chamada para obter é localhost:3000/employees
+//Exemplo get all -> Chamada para obter é localhost:3000/usuarios
 app.get('/usuarios', (req, res) => {
-  con.query('SELECT * FROM usuarios', (err, rows, fields) => {
+  con.query('SELECT * FROM usuarios WHERE nome = ? AND senha = ?'[req.param.usuario, req.param.senha], (err, rows, fields) => {
     if (!err)
-      //res.send(rows);
-      console.log(rows);
+      return true;
     else
-      console.log(err);
+      return false;
   })
 });

@@ -4,9 +4,13 @@ function login() {
     
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "http://localhost:3000/usuarios", false);
-    xhttp.send()
-    
-    localStorage.setItem("usuario", usuario);
-    localStorage.setItem("senha", senha);
-    location.reload();
+    xhttp.send({usuario, senha});
+
+    if (xhttp.response) {
+        localStorage.setItem("usuario", usuario);
+        localStorage.setItem("senha", senha);
+        location.reload();
+    } else {
+        //Adicionar mensagem no login que algum dado esta errado.
+    }
 }
