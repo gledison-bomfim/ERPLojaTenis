@@ -14,12 +14,12 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "usrteste",
   password: "usrteste",
-  port     : 3306,
-  database : 'projetovendas',
+  port: 3306,
+  database: 'projetovendas',
   multipleStatements: true
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (!err)
     console.log('DB connection succeded.');
   else
@@ -29,11 +29,19 @@ con.connect(function(err) {
 app.listen(3000, () => console.log('Express server is runnig at port no : 3000'));
 
 //Exemplo get all -> Chamada para obter é localhost:3000/usuarios
-app.get('/usuarios', (req, res) => {
-  con.query('SELECT * FROM usuarios WHERE nome = ? AND senha = ?'[req.param.usuario, req.param.senha], (err, rows, fields) => {
-    if (!err)
-      return true;
-    else
-      return false;
+app.post('/usuarios', (req, res) => {
+  con.query('SELECT Count(*) as Count FROM usuarios WHERE nome = ? AND senha = ?', [req.body.usuario, req.body.senha], (err, rows, fields) => {
+    if (!err) {
+      if (rows[0].Count > 0) {
+        res.send("Conectado");
+      } else {
+        res.send("Não Conectou");
+      }
+      console.log(rows);  
+    }
+    else{
+      res.send("Erro");
+      console.log("Erro");
+    }
   })
 });

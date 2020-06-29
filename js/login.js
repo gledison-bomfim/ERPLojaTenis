@@ -3,14 +3,23 @@ function login() {
     senha = document.getElementById("inputPassword").value;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:3000/usuarios", false);
-    xhttp.send({usuario, senha});
+    xhttp.open("POST", "http://localhost:3000/usuarios", false);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    var data = JSON.stringify({ "usuario": usuario, "senha": senha });
+    xhttp.send(data);
 
     if (xhttp.response) {
-        localStorage.setItem("usuario", usuario);
-        localStorage.setItem("senha", senha);
-        location.reload();
+        if (xhttp.response == "Conectado") {
+            localStorage.setItem("usuario", usuario);
+            localStorage.setItem("senha", senha);
+            location.reload();
+        } else{
+            alert("Usuário ou senha inválidos");
+        } 
+        if (xhttp.response == "Erro"){
+            alert("Erro ao pesquisar usuário");
+        }
     } else {
-        //Adicionar mensagem no login que algum dado esta errado.
+        alert("Erro ao realizar requisição");
     }
 }
