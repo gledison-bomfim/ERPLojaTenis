@@ -30,10 +30,10 @@ app.listen(3000, () => console.log('Express server is runnig at port no : 3000')
 
 //Exemplo get all -> Chamada para obter é localhost:3000/usuarios
 app.post('/usuarios', (req, res) => {
-  con.query('SELECT Count(*) as Count FROM usuarios WHERE nome = ? AND senha = ?', [req.body.usuario, req.body.senha], (err, rows, fields) => {
+  con.query('SELECT Count(*) as Count, ifnull(divisao,"") as Divisao FROM usuarios WHERE nome = ? AND senha = ?', [req.body.usuario, req.body.senha], (err, rows, fields) => {
     if (!err) {
       if (rows[0].Count > 0) {
-        res.send("Conectado");
+        res.send(rows[0].Divisao);
       } else {
         res.send("Não Conectou");
       }
@@ -44,20 +44,66 @@ app.post('/usuarios', (req, res) => {
   })
 });
 
-// Pesquisar Produtos
-app.get('/produtos', (req, res) => {
-  con.query('SELECT produtos.*, ifnull(estoque.qtdeEstoque, 0) as estoque FROM produtos LEFT JOIN estoque ON estoque.idProduto = produtos.id', (err, rows, fields) => {
+// ALMOXARIFADO -- Pesquisar Produtos
+app.post('/produtos', (req, res) => {
+  con.query('SELECT * FROM produtos', (err, rows, fields) => {
     if (!err) {
       var ProdutosJSON = [];
       rows.forEach(function (row) {
-        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "fotoURL": row.fotoURL, "dataEmissao": row.dataEmissao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha , "estoque": row.estoque});
+        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha , "estoque": row.estoque});
       });
 
       res.send(JSON.stringify(ProdutosJSON));
     }
     else {
       res.send("Erro");
-      console.log("Erro");
+    }
+  })
+});
+
+// FINANCEIRO -- Pesquisar ordens de compra
+app.post('/ordens', (req, res) => {
+  con.query('SELECT oc.id,u.nome as usuario,DATE_FORMAT(oc.dataCriacao, "%d/%m/%Y") as data,oc.processado FROM ordenscompra oc INNER JOIN usuarios u ON u.id = oc.idUsuario', (err, rows, fields) => {
+    if (!err) {
+      var OrdensJSON = [];
+      rows.forEach(function (row) {
+        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado});
+      });
+
+      res.send(JSON.stringify(OrdensJSON));
+    }
+    else {
+      res.send("Erro");
+    }
+  })
+});
+
+    // Arpovar ordem de compra
+app.post('/aprovarOrdem', (req, res) => {
+  con.query('UPDATE ordenscompra SET processado = 1 WHERE id = ?', [req.body.id], (err) => {
+    if (err) {
+      console.log(err);
+      res.send("Erro ao executar");
+    }
+    else {
+      res.send("");
+    }
+  })
+});
+
+// COMPRAS
+app.post('/compras', (req, res) => {
+  con.query('SELECT oc.id,u.nome as usuario,DATE_FORMAT(oc.dataCriacao, "%d/%m/%Y") as data,oc.processado FROM ordenscompra oc INNER JOIN usuarios u ON u.id = oc.idUsuario', (err, rows, fields) => {
+    if (!err) {
+      var OrdensJSON = [];
+      rows.forEach(function (row) {
+        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado});
+      });
+
+      res.send(JSON.stringify(OrdensJSON));
+    }
+    else {
+      res.send("Erro");
     }
   })
 });

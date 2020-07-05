@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `projetovendas` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `projetovendas`;
 -- MySQL dump 10.13  Distrib 5.6.47, for Win64 (x86_64)
 --
 -- Host: localhost    Database: projetovendas
@@ -18,32 +16,31 @@ USE `projetovendas`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `estoque`
+-- Table structure for table `cadastropessoas`
 --
 
-DROP TABLE IF EXISTS `estoque`;
+DROP TABLE IF EXISTS `cadastropessoas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `estoque` (
+CREATE TABLE `cadastropessoas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `filial` varchar(45) CHARACTER SET latin1 NOT NULL COMMENT 'Codigo da filial do estoque',
-  `dataAlteracao` datetime NOT NULL COMMENT 'Data da última alteração no estoque desta filial',
-  `qtdeEstoque` double(10,3) NOT NULL COMMENT 'Quantidade de estoque do produto nesta filial\n',
-  `idProduto` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`,`idProduto`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `idProduto_idx` (`idProduto`),
-  CONSTRAINT `Estoque_idProduto` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tipo` char(1) NOT NULL COMMENT 'Define se é Pessoa Física (F) ou Jurídica (J)',
+  `cpf` char(11) DEFAULT NULL,
+  `cnpj` char(14) DEFAULT NULL,
+  `nome` varchar(90) NOT NULL,
+  `categoria` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Cadastro de Pessoas Fisicas ou Juridicas\ncategroia deve ser um dos seguintes:\n	- FORNECEDOR\n	- CLIENTE\n	- USUARIO';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estoque`
+-- Dumping data for table `cadastropessoas`
 --
 
-LOCK TABLES `estoque` WRITE;
-/*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
+LOCK TABLES `cadastropessoas` WRITE;
+/*!40000 ALTER TABLE `cadastropessoas` DISABLE KEYS */;
+INSERT INTO `cadastropessoas` VALUES (1,'F','00000000000',NULL,'Pessoa','Usuario');
+/*!40000 ALTER TABLE `cadastropessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-22 19:45:58
+-- Dump completed on 2020-07-05 15:12:42

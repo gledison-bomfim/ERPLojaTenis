@@ -15,6 +15,7 @@ function financeiro(){
     $("#principal").load("html/financeiro.html");
     document.getElementById("aba").innerHTML = "Financeiro";
     sessionStorage.setItem("setor", "financeiro");
+    selectOrdens();
 }
 
 function almoxarifado(){

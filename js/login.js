@@ -9,16 +9,17 @@ function login() {
     xhttp.send(data);
 
     if (xhttp.response) {
-        if (xhttp.response == "Conectado") {
-            localStorage.setItem("usuario", usuario);
-            localStorage.setItem("senha", senha);
-            location.reload();
-        } else{
+        if (xhttp.response == "Não Conectou") {
             alert("Usuário ou senha inválidos");
-        } 
-        if (xhttp.response == "Erro"){
-            alert("Erro ao pesquisar usuário");
-        }
+        } else
+            if (xhttp.response == "Erro") {
+                alert("Erro ao pesquisar usuário");
+            } else {
+                localStorage.setItem("usuario", usuario);
+                localStorage.setItem("senha", senha);
+                localStorage.setItem("divisao", xhttp.response);
+                location.reload();
+            }
     } else {
         alert("Erro ao realizar requisição");
     }

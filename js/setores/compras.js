@@ -1,5 +1,5 @@
 function selectTodosProdutos() {
-    var jqxhr = $.post("http://localhost:3000/produtos", function (json) {
+    var jqxhr = $.post("http://localhost:3000/compras", function (json) {
         var ProdutosJSON = new Array();
         ProdutosJSON = JSON.parse(json); 
 
@@ -7,11 +7,8 @@ function selectTodosProdutos() {
             var linha = "";
             linha += "<tr>";
             linha += "<th scope='row'>" + row.id + "</th>";
-            linha += "<td>" + row.codigo + "</td>";
-            linha += "<td>" + row.descricao + "</td>";
-            linha += "<td>" + row.codBarras + "</td>";
-            linha += "<td>" + row.unidade + "</td>";
-            linha += "<td>" + row.estoque + "</td>";
+            linha += "<td>" + row.produto + "</td>";
+            linha += "<td>" + row.qtde + "</td>";
             linha += "</tr>";
 
             $("#tbProdutos tr:last").after(linha);

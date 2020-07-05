@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `projetovendas` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `projetovendas`;
 -- MySQL dump 10.13  Distrib 5.6.47, for Win64 (x86_64)
 --
 -- Host: localhost    Database: projetovendas
@@ -32,7 +30,7 @@ CREATE TABLE `ordenscompra` (
   PRIMARY KEY (`id`),
   KEY `idUsuario_idx` (`idUsuario`),
   CONSTRAINT `Ordens_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Define as Ordems de Compra dos Produtos pelo almoxarifado.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Define as Ordems de Compra dos Produtos pelo almoxarifado.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +39,7 @@ CREATE TABLE `ordenscompra` (
 
 LOCK TABLES `ordenscompra` WRITE;
 /*!40000 ALTER TABLE `ordenscompra` DISABLE KEYS */;
+INSERT INTO `ordenscompra` VALUES (1,1,'2020-06-29 21:04:21',0);
 /*!40000 ALTER TABLE `ordenscompra` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-22 19:45:59
+-- Dump completed on 2020-07-05 15:12:42

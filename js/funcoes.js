@@ -18,3 +18,17 @@ $(function loginInclude() {
   }
 });
 
+$(function selecionarSetores(){
+  var divisao = localStorage.getItem("divisao");
+  if (divisao != "gerente"){
+      if (divisao != "financeiro"){
+          $( ".btnFinanceiro" ).remove();
+      }
+      if (divisao != "almoxarifado"){
+          $( ".btnAlmoxarifado" ).remove();
+      }
+      if (divisao != "compras"){
+          $( ".btnCompras" ).remove();
+      }
+  }
+})
