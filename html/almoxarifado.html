@@ -1,4 +1,55 @@
-<table class="table table-striped"  id="tbProdutos">
+<h4 class="m-2">Produto</h4>
+<div class="row">
+    <div class="col ml-2">
+        <label for="codigoExterno">Código externo</label>
+        <input type="text" class="form-control" id="codigoExterno" placeholder="" value="" required="">
+    </div>
+
+    <div class="col">
+        <label for="codigoInterno">Código Interno</label>
+        <input type="text" class="form-control" id="codigoInterno" placeholder="" value="" required="">
+        <div class="invalid-feedback">
+            Necessário inserir o código interno
+        </div>
+    </div>
+
+    <div class="col-md">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" placeholder="" value="" required="">
+        <div class="invalid-feedback">
+            Necessário inserir a Descrição
+        </div>
+    </div>
+
+    <div class="col-md">
+        <label for="barras">Cód. Barras</label>
+        <input type="text" class="form-control" id="barras" placeholder="" value="" required="">
+        <div class="invalid-feedback">
+            Necessário inserir o código de barras
+        </div>
+    </div>
+
+    <div class="col">
+        <label for="unidade">Unidade</label>
+        <input type="text" class="form-control" id="unidade" placeholder="" value="" required="">
+        <div class="invalid-feedback">
+            Necessário inserir a unidade
+        </div>
+    </div>
+
+    <div class="col mr-2">
+        <label for="estoque">estoque</label>
+        <input type="text" class="form-control" id="estoque" placeholder="" value="" required="">
+        <div class="invalid-feedback">
+            Necessário inserir a quantidade em estoque
+        </div>
+    </div>
+</div>
+<button class=" m-2 btn btn-primary btn-lg" type="submit">Inserir</button>
+<hr class="mb-4">
+
+
+<table class="table table-striped" id="tbProdutos">
     <thead>
         <tr>
             <th scope="col">Código Interno</th>

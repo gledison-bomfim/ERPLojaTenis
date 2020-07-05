@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `projetovendas` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `projetovendas`;
 -- MySQL dump 10.13  Distrib 5.6.47, for Win64 (x86_64)
 --
 -- Host: localhost    Database: projetovendas
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-05 15:12:42
+-- Dump completed on 2020-07-05 18:07:23

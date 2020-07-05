@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `projetovendas` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `projetovendas`;
 -- MySQL dump 10.13  Distrib 5.6.47, for Win64 (x86_64)
 --
 -- Host: localhost    Database: projetovendas
@@ -44,7 +46,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (1,1,'teste','00000001','UN',0,10.00),(2,2,'teste2','00000002','UN',0,15.00),(3,3,'teste3','00000003','KG',1,0.00),(4,4,'teste4','00000004','UN',1,2.12);
+INSERT INTO `produtos` VALUES (1,101,'teste','00000001','UN',0,10.00),(2,102,'teste2','00000002','UN',0,15.00),(3,201,'teste3','00000003','KG',1,0.00),(4,202,'teste4','00000004','KG',1,2.12);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-05 15:12:41
+-- Dump completed on 2020-07-05 18:07:22
