@@ -93,11 +93,11 @@ app.post('/aprovarOrdem', (req, res) => {
 
 // COMPRAS
 app.post('/compras', (req, res) => {
-  con.query('SELECT oc.id,u.nome as usuario,DATE_FORMAT(oc.dataCriacao, "%d/%m/%Y") as data,oc.processado FROM ordenscompra oc INNER JOIN usuarios u ON u.id = oc.idUsuario', (err, rows, fields) => {
+  con.query('SELECT oc.id as codigo, p.descricao as produto, op.qtde FROM ordenscompra oc  INNER JOIN ordensprodutos op  ON op.idOrdem = oc.id INNER JOIN produtos p ON p.id = op.idProduto', (err, rows, fields) => {
     if (!err) {
       var OrdensJSON = [];
       rows.forEach(function (row) {
-        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado});
+        OrdensJSON.push({ "codigo": row.codigo, "produto": row.produto, "qtde": row.qtde});
       });
 
       res.send(JSON.stringify(OrdensJSON));

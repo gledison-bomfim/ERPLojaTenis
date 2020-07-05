@@ -9,6 +9,7 @@ function compras(){
     $("#principal").load("html/compras.html");
     document.getElementById("aba").innerHTML = "Compras";
     sessionStorage.setItem("setor", "compras");
+    selectCompras();
 }
 
 function financeiro(){
