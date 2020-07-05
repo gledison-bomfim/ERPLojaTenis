@@ -1,20 +1,24 @@
 function selectTodosProdutos() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:3000/produtos", false);
-    xhttp.send();
+    var jqxhr = $.get("http://localhost:3000/produtos", function (json) {
+        var ProdutosJSON = new Array();
+        ProdutosJSON = JSON.parse(json); 
 
-    if (xhttp.response) {
-        if (xhttp.response == "Erro") {
+        ProdutosJSON.forEach(function (row) {
+            var linha = "";
+            linha += "<tr>";
+            linha += "<th scope='row'>" + row.codigo + "</th>";
+            linha += "<td>" + row.descricao + "</td>";
+            linha += "<td>" + row.codBarras + "</td>";
+            linha += "<td>" + row.unidade + "</td>";
+            linha += "<td>" + row.estoque + "</td>";
+            linha += "</tr>";
+
+            $("#produtos tr:last").after(linha);
+        });
+
+    })
+        .fail(function () {
             alert("Erro ao pesquisar produtos");
-        } else {
-            var ProdutosJSON = new Array();
-            ProdutosJSON = JSON.parse(xhttp.response);
+        })
 
-            ProdutosJSON.forEach(function (row) {
-                $("#produtos").append("<th></th>");
-              });
-        }
-    } else {
-        alert("Erro ao realizar requisição");
-    }
 }

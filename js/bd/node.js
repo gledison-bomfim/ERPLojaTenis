@@ -45,12 +45,12 @@ app.post('/usuarios', (req, res) => {
 });
 
 // Pesquisar Produtos
-app.post('/produtos', (req, res) => {
-  con.query('SELECT * FROM produtos', (err, rows, fields) => {
+app.get('/produtos', (req, res) => {
+  con.query('SELECT produtos.*, ifnull(estoque.qtdeEstoque, 0) as estoque FROM produtos LEFT JOIN estoque ON estoque.idProduto = produtos.id', (err, rows, fields) => {
     if (!err) {
       var ProdutosJSON = [];
       rows.forEach(function (row) {
-        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "fotoURL": row.fotoURL, "dataEmissao": row.dataEmissao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha });
+        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "fotoURL": row.fotoURL, "dataEmissao": row.dataEmissao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha , "estoque": row.estoque});
       });
 
       res.send(JSON.stringify(ProdutosJSON));
