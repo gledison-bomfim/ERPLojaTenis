@@ -1,3 +1,7 @@
+function clickRow(row){
+    alert(row.id);
+}
+
 function selectTodosProdutos() {
     var jqxhr = $.post("http://localhost:3000/produtos", function (json) {
         var ProdutosJSON = new Array();
@@ -5,8 +9,8 @@ function selectTodosProdutos() {
 
         ProdutosJSON.forEach(function (row) {
             var linha = "";
-            linha += "<tr>";
-            linha += "<th scope='row'>" + row.id + "</th>";
+            linha += "<tr onclick='clickRow(this)'>";
+            linha += "<th scope='row' class='id' >" + row.id + "</th>";
             linha += "<td>" + row.codigo + "</td>";
             linha += "<td>" + row.descricao + "</td>";
             linha += "<td>" + row.codBarras + "</td>";

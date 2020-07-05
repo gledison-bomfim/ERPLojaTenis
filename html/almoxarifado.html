@@ -1,19 +1,23 @@
-<h4 class="m-2">Produto</h4>
-<div class="row">
-    <div class="col ml-2">
-        <label for="codigoExterno">Código externo</label>
-        <input type="text" class="form-control" id="codigoExterno" placeholder="" value="" required="">
+<div class="row ml-3">
+    <h4>Produto</h4>
+</div>
+
+<div class="row m-1">
+    <div class="col">
+        <label for="codigoInterno">Código Interno</label>
+        <input disabled type="text" class="form-control" id="codigoInterno" placeholder="" value="" required="">
+
     </div>
 
     <div class="col">
-        <label for="codigoInterno">Código Interno</label>
-        <input type="text" class="form-control" id="codigoInterno" placeholder="" value="" required="">
+        <label for="codigoExterno">Código externo</label>
+        <input type="text" class="form-control" id="codigoExterno" placeholder="" value="" required="">
         <div class="invalid-feedback">
-            Necessário inserir o código interno
+            Necessário inserir o código externo
         </div>
     </div>
 
-    <div class="col-md">
+    <div class="col-md-5">
         <label for="descricao">Descrição</label>
         <input type="text" class="form-control" id="descricao" placeholder="" value="" required="">
         <div class="invalid-feedback">
@@ -37,7 +41,7 @@
         </div>
     </div>
 
-    <div class="col mr-2">
+    <div class="col">
         <label for="estoque">estoque</label>
         <input type="text" class="form-control" id="estoque" placeholder="" value="" required="">
         <div class="invalid-feedback">
@@ -45,7 +49,12 @@
         </div>
     </div>
 </div>
-<button class=" m-2 btn btn-primary btn-lg" type="submit">Inserir</button>
+
+<div class="row ml-3">
+    <button class=" mr-3 btn btn-primary btn-lg" type="submit">Inserir</button>
+    <button class=" mr-3 btn btn-danger btn-lg" type="submit">Deletar</button>
+</div>
+
 <hr class="mb-4">
 
 
