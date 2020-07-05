@@ -1,5 +1,20 @@
 function clickRow(row){
-    alert(row.id);
+    $("#codigoInterno").val(row.cells[0].firstChild.nodeValue);
+    $("#codigoExterno").val(row.cells[1].firstChild.nodeValue);
+    $("#descricao").val(row.cells[2].firstChild.nodeValue);
+    $("#barras").val(row.cells[3].firstChild.nodeValue);
+    $("#unidade").val(row.cells[4].firstChild.nodeValue);
+    $("#estoque").val(row.cells[5].firstChild.nodeValue);
+}
+
+function limparCamposProdutos(){
+    $("#codigoInterno").val("");
+    $("#codigoExterno").val("");
+    $("#descricao").val("");
+    $("#barras").val("");
+    $("#unidade").val("");
+    $("#estoque").val("");
+
 }
 
 function selectTodosProdutos() {
