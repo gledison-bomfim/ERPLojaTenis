@@ -20,3 +20,9 @@ function selectCompras() {
         })
 
 }
+
+function detalhesCompras() {
+    $("#tbCompras").hide();
+
+    $("#principal").load("../html/detalhesCompras.html");
+  }

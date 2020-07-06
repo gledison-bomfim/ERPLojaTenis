@@ -30,14 +30,13 @@ CREATE TABLE `produtos` (
   `descricao` varchar(90) CHARACTER SET latin1 NOT NULL COMMENT 'Descrição/Nome do produto',
   `codBarras` char(13) CHARACTER SET latin1 NOT NULL COMMENT 'Código de barras externo do produto',
   `unidade` varchar(10) CHARACTER SET latin1 NOT NULL COMMENT 'Tipo de unidade do produto',
-  `foraLinha` tinyint(1) NOT NULL COMMENT 'Determina se o produto está ou não fora de linha',
   `estoque` double(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`,`codBarras`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `codBarras_UNIQUE` (`codBarras`),
   KEY `codigo` (`codigo`),
   KEY `codBarras` (`codBarras`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +45,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (1,101,'teste','00000001','UN',0,10.00),(2,102,'teste2','00000002','UN',0,15.00),(3,201,'teste3','00000003','KG',1,0.00),(4,202,'teste4','00000004','KG',1,2.12);
+INSERT INTO `produtos` VALUES (1,101,'teste','00000001','UN',10.00),(2,321,'teste2','00000002','UN',15.00),(4,202,'teste4','00000004','KG',2.12),(5,999,'teste123','0000005','UN',2.50),(6,888,'teste 875 mais 888 testeste','123','M',15.00);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-05 18:07:22
+-- Dump completed on 2020-07-06 19:00:03

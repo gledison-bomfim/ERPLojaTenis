@@ -75,7 +75,7 @@ app.post('/deletarProduto', (req, res) => {
 // Upate produto
 app.post('/updateProduto', (req, res) => {
   var reqJSON = req.body;
-  con.query('UPDATE produtos SET codigo = ? , descricao = ? , codBarras = ? , unidade = ? , estoque = ?, foraLinha = 0 WHERE id = ?', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque, reqJSON.id], (err, rows, fields) => {
+  con.query('UPDATE produtos SET codigo = ? , descricao = ? , codBarras = ? , unidade = ? , estoque = ? WHERE id = ?', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque, reqJSON.id], (err, rows, fields) => {
     if (!err) {
       res.send("Atualizado");
     }
@@ -88,7 +88,7 @@ app.post('/updateProduto', (req, res) => {
 // Insert produto
 app.post('/insertProduto', (req, res) => {
   var reqJSON = req.body;
-  con.query('INSERT INTO produtos (codigo, descricao, codBarras, unidade, estoque, foraLinha) values ( ? , ? , ? , ? , ? , 0)', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque], (err, rows, fields) => {
+  con.query('INSERT INTO produtos (codigo, descricao, codBarras, unidade, estoque) values ( ? , ? , ? , ? , ? )', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque], (err, rows, fields) => {
     if (!err) {
       res.send("Inserido");
     }
