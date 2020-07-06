@@ -4,9 +4,19 @@ $(function headerInclude() {
   if (localStorage.getItem("usuario") && localStorage.getItem("senha")) {
     $("#header").load("html/header.html");
     if (sessionStorage.getItem("setor")) {
-      $("#principal").load("html/"+sessionStorage.getItem("setor")+".html");
+      var setor = sessionStorage.getItem("setor");
+      //$("#principal").load("html/"+sessionStorage.getItem("setor")+".html");
+      if (setor == "compras") {
+        compras();
+      }
+      if (setor == "financeiro"){
+        financeiro();
+      }
+      if (setor == "almoxarifado"){
+        almoxarifado();
+      }
     } else {
-      $("#principal").load("html/principal.html");
+      principal();
     }
   }
 });

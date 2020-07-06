@@ -1,4 +1,75 @@
-function clickRow(row){
+function salvarProduto() {
+    var id = $("#codigoInterno").val();
+    var codigo = $("#codigoExterno").val();
+    var descricao = $("#descricao").val();
+    var barras = $("#barras").val();
+    var unidade = $("#unidade").val();
+    var estoque = $("#estoque").val();
+
+    if (!codigo || !descricao || !barras || !unidade || !estoque) {
+        alert("Necssário inserir todas as informações para Salvar");
+        return;
+    }
+
+    var xhttp = new XMLHttpRequest();
+
+    if (id) {
+        xhttp.open("POST", "http://localhost:3000/updateProduto", false);
+        var data = JSON.stringify({
+            "id": id,
+            "codigo": codigo,
+            "descricao": descricao,
+            "barras": barras,
+            "unidade": unidade,
+            "estoque": estoque
+        });
+    } else {
+        xhttp.open("POST", "http://localhost:3000/insertProduto", false);
+        var data = JSON.stringify({
+            "codigo": codigo,
+            "descricao": descricao,
+            "barras": barras,
+            "unidade": unidade,
+            "estoque": estoque
+        });
+    }
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(data);
+
+    if (xhttp.response) {
+        if (xhttp.response == "Erro") {
+            alert("Erro ao Salvar produto");
+        } else {
+            location.reload();
+        }
+    } else {
+        alert("Erro ao realizar requisição");
+    }
+
+}
+
+function deletarProduto() {
+    var id = $("#codigoInterno").val();
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:3000/deletarProduto", false);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    var data = JSON.stringify({ "id": id });
+    xhttp.send(data);
+
+    if (xhttp.response) {
+        if (xhttp.response == "Erro") {
+            alert("Erro ao deletar produto");
+        } else {
+            location.reload();
+        }
+    } else {
+        alert("Erro ao realizar requisição");
+    }
+}
+
+function clickRow(row) {
     $("#codigoInterno").val(row.cells[0].firstChild.nodeValue);
     $("#codigoExterno").val(row.cells[1].firstChild.nodeValue);
     $("#descricao").val(row.cells[2].firstChild.nodeValue);
@@ -7,7 +78,7 @@ function clickRow(row){
     $("#estoque").val(row.cells[5].firstChild.nodeValue);
 }
 
-function limparCamposProdutos(){
+function limparCamposProdutos() {
     $("#codigoInterno").val("");
     $("#codigoExterno").val("");
     $("#descricao").val("");
@@ -20,7 +91,7 @@ function limparCamposProdutos(){
 function selectTodosProdutos() {
     var jqxhr = $.post("http://localhost:3000/produtos", function (json) {
         var ProdutosJSON = new Array();
-        ProdutosJSON = JSON.parse(json); 
+        ProdutosJSON = JSON.parse(json);
 
         ProdutosJSON.forEach(function (row) {
             var linha = "";

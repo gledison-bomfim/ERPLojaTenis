@@ -44,13 +44,14 @@ app.post('/usuarios', (req, res) => {
   })
 });
 
-// ALMOXARIFADO -- Pesquisar Produtos
+// ALMOXARIFADO 
+// -- Pesquisar Produtos
 app.post('/produtos', (req, res) => {
   con.query('SELECT * FROM produtos', (err, rows, fields) => {
     if (!err) {
       var ProdutosJSON = [];
       rows.forEach(function (row) {
-        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha , "estoque": row.estoque});
+        ProdutosJSON.push({ "id": row.id, "codigo": row.codigo, "descricao": row.descricao, "codBarras": row.codBarras, "unidade": row.unidade, "foraLinha": row.foraLinha, "estoque": row.estoque });
       });
 
       res.send(JSON.stringify(ProdutosJSON));
@@ -60,6 +61,44 @@ app.post('/produtos', (req, res) => {
     }
   })
 });
+// Deletar produto
+app.post('/deletarProduto', (req, res) => {
+  con.query('DELETE FROM produtos WHERE id = ?', [req.body.id], (err, rows, fields) => {
+    if (!err) {
+      res.send("Deletou");
+    }
+    else {
+      res.send("Erro");
+    }
+  })
+});
+// Upate produto
+app.post('/updateProduto', (req, res) => {
+  var reqJSON = req.body;
+  con.query('UPDATE produtos SET codigo = ? , descricao = ? , codBarras = ? , unidade = ? , estoque = ?, foraLinha = 0 WHERE id = ?', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque, reqJSON.id], (err, rows, fields) => {
+    if (!err) {
+      res.send("Atualizado");
+    }
+    else {
+      res.send("Erro");
+    }
+  })
+});
+
+// Insert produto
+app.post('/insertProduto', (req, res) => {
+  var reqJSON = req.body;
+  con.query('INSERT INTO produtos (codigo, descricao, codBarras, unidade, estoque, foraLinha) values ( ? , ? , ? , ? , ? , 0)', [reqJSON.codigo, reqJSON.descricao, reqJSON.barras, reqJSON.unidade, reqJSON.estoque], (err, rows, fields) => {
+    if (!err) {
+      res.send("Inserido");
+    }
+    else {
+      res.send("Erro");
+    }
+  })
+});
+
+
 
 // FINANCEIRO -- Pesquisar ordens de compra
 app.post('/ordens', (req, res) => {
@@ -67,7 +106,7 @@ app.post('/ordens', (req, res) => {
     if (!err) {
       var OrdensJSON = [];
       rows.forEach(function (row) {
-        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado});
+        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado });
       });
 
       res.send(JSON.stringify(OrdensJSON));
@@ -78,7 +117,7 @@ app.post('/ordens', (req, res) => {
   })
 });
 
-    // Arpovar ordem de compra
+// Arpovar ordem de compra
 app.post('/aprovarOrdem', (req, res) => {
   con.query('UPDATE ordenscompra SET processado = 1 WHERE id = ?', [req.body.id], (err) => {
     if (err) {
@@ -97,7 +136,7 @@ app.post('/compras', (req, res) => {
     if (!err) {
       var OrdensJSON = [];
       rows.forEach(function (row) {
-        OrdensJSON.push({ "codigo": row.codigo, "produto": row.produto, "qtde": row.qtde});
+        OrdensJSON.push({ "codigo": row.codigo, "produto": row.produto, "qtde": row.qtde });
       });
 
       res.send(JSON.stringify(OrdensJSON));

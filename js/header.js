@@ -1,32 +1,33 @@
-function principal(){
+function principal() {
     $("#principal").load("html/principal.html");
     document.getElementById("aba").innerHTML = "Principal";
     sessionStorage.removeItem("setor");
     location.reload();
 }
 
-function compras(){
+function compras() {
     $("#principal").load("html/compras.html");
-    document.getElementById("aba").innerHTML = "Compras";
     sessionStorage.setItem("setor", "compras");
     selectCompras();
+    document.getElementById("aba").innerHTML = "Compras";
 }
 
-function financeiro(){
+function financeiro() {
     $("#principal").load("html/financeiro.html");
-    document.getElementById("aba").innerHTML = "Financeiro";
     sessionStorage.setItem("setor", "financeiro");
     selectOrdens();
+    document.getElementById("aba").innerHTML = "Financeiro";
+    
 }
 
-function almoxarifado(){
+function almoxarifado() {
     $("#principal").load("html/almoxarifado.html");
-    document.getElementById("aba").innerHTML = "Produtos";
     sessionStorage.setItem("setor", "almoxarifado");
     selectTodosProdutos();
+    document.getElementById("aba").innerHTML = "Produtos";
 }
 
-function sair(){
+function sair() {
     sessionStorage.clear();
     localStorage.clear();
     location.reload();
