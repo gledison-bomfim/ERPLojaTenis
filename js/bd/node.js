@@ -102,11 +102,11 @@ app.post('/insertProduto', (req, res) => {
 
 // FINANCEIRO -- Pesquisar ordens de compra
 app.post('/ordens', (req, res) => {
-  con.query('SELECT oc.id,u.nome as usuario,DATE_FORMAT(oc.dataCriacao, "%d/%m/%Y") as data,oc.processado FROM ordenscompra oc INNER JOIN usuarios u ON u.id = oc.idUsuario', (err, rows, fields) => {
+  con.query('SELECT * FROM ordenscompra', (err, rows, fields) => {
     if (!err) {
       var OrdensJSON = [];
       rows.forEach(function (row) {
-        OrdensJSON.push({ "id": row.id, "usuario": row.usuario, "data": row.data, "processado": row.processado });
+        OrdensJSON.push({ "id": row.idCompra, "processado": row.processado });
       });
 
       res.send(JSON.stringify(OrdensJSON));
@@ -119,7 +119,7 @@ app.post('/ordens', (req, res) => {
 
 // Arpovar ordem de compra
 app.post('/aprovarOrdem', (req, res) => {
-  con.query('UPDATE ordenscompra SET processado = 1 WHERE id = ?', [req.body.id], (err) => {
+  con.query('UPDATE ordenscompra SET processado = 1 WHERE idCompra = ?', [req.body.id], (err) => {
     if (err) {
       console.log(err);
       res.send("Erro ao executar");
@@ -132,11 +132,11 @@ app.post('/aprovarOrdem', (req, res) => {
 
 // COMPRAS
 app.post('/compras', (req, res) => {
-  con.query('SELECT oc.id as codigo, p.descricao as produto, op.qtde FROM ordenscompra oc  INNER JOIN ordensprodutos op  ON op.idOrdem = oc.id INNER JOIN produtos p ON p.id = op.idProduto', (err, rows, fields) => {
+  con.query('SELECT * FROM ordenscompra;', (err, rows, fields) => {
     if (!err) {
       var OrdensJSON = [];
       rows.forEach(function (row) {
-        OrdensJSON.push({ "codigo": row.codigo, "produto": row.produto, "qtde": row.qtde });
+        OrdensJSON.push({ "codigo": row.idCompra, "produto": row.produto, "qtde": row.qtde });
       });
 
       res.send(JSON.stringify(OrdensJSON));
@@ -145,4 +145,18 @@ app.post('/compras', (req, res) => {
       res.send("Erro");
     }
   })
+});
+
+app.post('/salvaCompra', (req, res) => {
+  console.log(req);
+  req.body.forEach(function (JSONdata){
+
+    con.query('INSERT INTO ordenscompra (idCompra, produto, qtde, processado) VALUES ( ? , ? , ? , 0)', [Math.floor(Math.random() * 99999), JSONdata.produto, JSONdata.qtde], (err, rows, fields) => {
+      if (err) {
+        res.send("Erro");
+      } else {
+        res.send("");
+      }
+    })
+  });
 });
