@@ -2,6 +2,10 @@
 
 # PROJETO VENDAS 
 
+Foi desenvolvido por Bruno Wagner, Leonardo Noro e Glédison Bomfim
+
+O projeto foi criado pelo grupo dos ingrantes: 
+
 DOCUMENTO 0001  
 MARCELO  TADEU CARVALHO NASCIMENTO  
 RUI VELASQUE TEIXEIRA JÚNIOR  
